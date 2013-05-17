@@ -43,6 +43,7 @@ namespace PixelsenseYourKyma
 
         Double Position;
         String ip = "172.30.8.16"; //Here is the ip of the computer where the kyma is connected.
+        int port = 8000; //Here is the port of the computer where the kyma is connected.
 
         /// <summary>
         /// Default constructor.
@@ -128,8 +129,39 @@ namespace PixelsenseYourKyma
 
             if (isTag)
             {
+                var tqg = args.TouchDevice.GetTagData();
+                Console.WriteLine(tqg.Value);
+                OSC oscm = new OSC(ip, port);
                 UIElement relativeTo = this;
-                Position = args.TouchDevice.GetOrientation(relativeTo);
+                OSCmsg omess = new OSCmsg("/vcs");
+                OSCmsg omess2 = new OSCmsg("/vcs");
+                //We check what is the tag value, and send the right parameter via OSC message
+                switch (tqg.Value)
+                {
+                    case 129:
+                        omess.addValue(3145731);
+                        break;
+                    case 128:
+                        omess.addValue(3145732);
+                        break;
+                    case 131:
+                        omess.addValue(3145733);
+                        break;
+                    case 132:
+                        omess.addValue(3145734);
+                        break;
+                    case 134:
+                        omess.addValue(3145729);
+                        break;
+                    default:
+                        omess.addValue(3145735);
+                        omess2.addValue(2);
+                        omess2.addValue(0.4f);
+                        oscm.sendOSCmsg(omess2);
+                        break;
+                }
+                omess.addValue((float)(args.TouchDevice.GetOrientation(relativeTo) / 360));
+                oscm.sendOSCmsg(omess);
             }
             args.TouchDevice.Capture(ActiveArea);
         }
@@ -142,7 +174,6 @@ namespace PixelsenseYourKyma
             //When we take the object, we put all the value to zero
             if (isTag)
             {
-                int port = 8000;
                 OSC oscm = new OSC(ip, port);
                 UIElement relativeTo = this;
                 Position = args.TouchDevice.GetOrientation(relativeTo);
@@ -194,7 +225,6 @@ namespace PixelsenseYourKyma
             {
                 var tqg = args.TouchDevice.GetTagData();
                 Console.WriteLine(tqg.Value);
-                int port = 8000;
                 OSC oscm = new OSC(ip, port);
                 UIElement relativeTo = this;
                 OSCmsg omess = new OSCmsg("/vcs");
