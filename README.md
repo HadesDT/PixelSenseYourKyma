@@ -29,4 +29,4 @@ On this function, first we check if the touch down is made by a tag. If it is th
 This function will do the same thing as touchdown. The goal here is to change parameter when we turn the object, just like a potentiometer.
 
 <h4>touchup</h4>
-Here we just put value to a default value.
+Here we just put the parameter to a default value.
