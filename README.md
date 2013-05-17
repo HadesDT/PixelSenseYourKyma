@@ -3,10 +3,10 @@
 Proof of concept made for KISS 2013 (Kyma International Sound Symposium - http://http://kiss2013.symbolicsound.com ).
 
 <h2>What are the principles behind the project?</h2>
-There are three main thing:</ br>
-First is of course the kyma patch.</ br>
-After that we have the OSC message which will be used to control the kyma via ethernet connection.</ br>
-Finally we have the Microsoft Pixelsense table wich will generate the OSC message and send them to the kyma.</ br>
+There are three main thing:<br />
+First is of course the kyma patch.<br />
+After that we have the OSC message which will be used to control the kyma via ethernet connection.<br />
+Finally we have the Microsoft Pixelsense table wich will generate the OSC message and send them to the kyma.<br />
 
 The goal is to control kyma with something intuitive and fun. Of course the application is really limited, but we count on your imagination to put this concept on another level.
 
